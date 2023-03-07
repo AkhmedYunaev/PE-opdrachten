@@ -25,5 +25,9 @@ namespace Prb.Radiators.Wpf
             InitializeComponent();
         }
 
+        private void TextBox_TextChanged()
+        {
+
+        }
     }
 }

@@ -7,6 +7,25 @@
         mc:Ignorable="d"
         Title="Radiator calculator" Height="576" Width="800" >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="19*"/>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="panTop" HorizontalAlignment="Center" Height="168" Header="Info ruimte" Margin="0,22,0,0" VerticalAlignment="Top" Width="780" Background="Beige"/>
 
-     </Grid>
+        <Label Content="Lengte te verwarmen ruimte (cm) :&#xD;&#xA;" HorizontalAlignment="Left" Height="42" Margin="44,40,0,0" VerticalAlignment="Top" Width="202"/>
+        <Label Content="Breedte te verwarmen ruimte (cm) :" HorizontalAlignment="Left" Height="42" Margin="44,77,0,0" VerticalAlignment="Top" Width="202"/>
+        <Label Content="Hoogte te verwarmen ruimte (cm) :" HorizontalAlignment="Left" Height="42" Margin="44,111,0,0" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="txtRoomLength" HorizontalAlignment="Left" Height="30" Margin="263,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
+        <TextBox x:Name="txtRoomWidth" HorizontalAlignment="Left" Height="30" Margin="263,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
+        <TextBox x:Name="txtRoomHeight" HorizontalAlignment="Left" Height="30" Margin="263,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
+        <Button x:Name="btnCalculateVolumeAndWatts" Content="Bereken volume en minimaal vermogen" HorizontalAlignment="Left" Margin="437,46,0,0" VerticalAlignment="Top" Width="244" Height="42"/>
+        <Label Content="Volume ruimte (m³) :" HorizontalAlignment="Left" Height="38" Margin="437,115,0,0" VerticalAlignment="Top" Width="150"/>
+        <Label Content="Minimaal vermogen te voorzien (W) :&#xD;&#xA; " HorizontalAlignment="Left" Height="38" Margin="437,152,0,0" VerticalAlignment="Top" Width="258" RenderTransformOrigin="0.484,2.383"/>
+        <Label x:Name="lblRoomValue" Content="" HorizontalAlignment="Left" Height="24" Margin="651,0,0,0" VerticalAlignment="Center" Width="95" Background="AliceBlue"/>
+        <Label x:Name="lblRoomWatts" Content="" HorizontalAlignment="Left" Height="24" Margin="651,152,0,0" VerticalAlignment="Top" Width="95" Background="AliceBlue" />
+        <Label x:Name="lblCubicMetres" Content="m³" HorizontalAlignment="Left" Height="26" Margin="751,0,0,0" VerticalAlignment="Center" Width="39"/>
+        <Label x:Name="lblMeasurementWatts" Content="W" HorizontalAlignment="Left" Height="27" Margin="751,143,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.449,-1.602"/>
+
+    </Grid>
 </Window>
