@@ -29,7 +29,7 @@
             <Label x:Name="lblCubicMetres" Content="m³" HorizontalAlignment="Left" Height="26" Margin="751,65,0,0" VerticalAlignment="Center" Width="39"/>
             <Label x:Name="lblMeasurementWatts" Content="W" HorizontalAlignment="Left" Height="27" Margin="751,152,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.449,-1.602"/>
         </Grid>
-        <GroupBox x:Name="panBottom" HorizontalAlignment="Left" Height="300" Header="Benodigde vermogen" Margin="16,200,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="780" Background="AliceBlue">
+        <GroupBox x:Name="panLower" HorizontalAlignment="Left" Height="300" Header="Benodigde vermogen" Margin="16,200,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="780" Background="AliceBlue">
             <Grid Height="278" Margin="10,0,-22,0" Width="NaN">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="221*"/>

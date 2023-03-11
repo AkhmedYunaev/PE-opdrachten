@@ -22,8 +22,9 @@ namespace Prb.Radiators.Wpf
     {
 
 
-        private object panBottom;
+       
         private object item;
+        private object lblRoomVolume;
 
         public MainWindow()
         {
@@ -38,21 +39,11 @@ namespace Prb.Radiators.Wpf
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             panTop.IsEnabled = true;
-            panBottom.IsEnabled = false;
+            panLower.IsEnabled = false;       //panBottom = CS0229 error
             FillComboBoxes();
             ResetControls();
+            
         }
-
-        private void ResetControls()
-        {
-
-        }
-
-        private void FillComboBoxes()
-        {
-
-        }
-
 
 
         private void BtnCalculateVolumeAndWatts_Click(object sender, RoutedEventArgs e)
@@ -68,7 +59,7 @@ namespace Prb.Radiators.Wpf
             lblRoomWatts.Content = watts.ToString();
 
             panTop.IsEnabled = false;
-            panBottom.IsEnabled = true;
+            panLower.IsEnabled = true;
         }
 
         private void BtnCalculateRadiatorWatts_Click(object sender, RoutedEventArgs e)
@@ -112,7 +103,7 @@ namespace Prb.Radiators.Wpf
             lstRadiators.Items.Add($"Radiator ({height} x {width} x {panels}) - {watts} W");
 
             double totalWatts = 0;
-            foreach (string item in lstRadiators.Items) ;
+            foreach (string item in lstRadiators.Items)
 
             {
                 string[] values = item.Split('-');
@@ -122,13 +113,44 @@ namespace Prb.Radiators.Wpf
             lblTotalWatts.Content = $"Total Watts: {totalWatts} W";
         }
 
-        private void btnReset_Click(object sender, RoutedEventArgs e)
+        private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
             ResetControls();
         }
 
+        private void ResetControls()
+        {
+            txtRoomHeight.Clear();
+            txtRoomLength.Clear();
+            txtRoomWidth.Clear();
+            lblRoomVolume.Content = "";
+            lblRoomWatts.Content = "";
+            lstRadiators.Items.Clear();
+            lblTotalWatts.Content = "";
+
+            panTop.IsEnabled = true;
+            panLower.IsEnabled = false;
+        }
+
+        private void FillComboBoxes()
+        {
+            cmbRadiatorHeight.Items.Add(50);
+            cmbRadiatorHeight.Items.Add(60);
+            cmbRadiatorHeight.Items.Add(70);
+            cmbRadiatorHeight.Items.Add(80);
+            cmbRadiatorHeight.Items.Add(90);
+            cmbRadiatorHeight.Items.Add(100);
+
+            cmbRadiatorWidth.Items.Add(50);
+            cmbRadiatorWidth.Items.Add(60);
+            cmbRadiatorWidth.Items.Add(70);
+            cmbRadiatorWidth.Items.Add(80);
+            cmbRadiatorWidth.Items.Add(90);
+            cmbRadiatorWidth.Items.Add(100);
+        }
 
     }   
+
        
         
 }
