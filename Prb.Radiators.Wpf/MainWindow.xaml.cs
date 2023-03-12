@@ -25,28 +25,41 @@ namespace Prb.Radiators.Wpf
        
         private object item;
         private object lblRoomVolume;
+        private int roomVolume;
+        private int totalRadiatorWatts;
+
+        double lengthRoom = double.Parse(txtRoomLength.Text);
+        double widthRoom = double.Parse(txtRoomWidth.Text);
+        double heightRoom = double.Parse(txtRoomHeight.Text);
+
 
         public MainWindow()
         {
             InitializeComponent();
-
-            double lengthRoom = double.Parse(txtRoomLength.Text);
-            double widthRoom = double.Parse(txtRoomWidth.Text);
-            double heightRoom = double.Parse(txtRoomHeight.Text);
-
-
-        }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            panTop.IsEnabled = true;
-            panLower.IsEnabled = false;       //panBottom = CS0229 error
-            FillComboBoxes();
+            InitializeComboboxes();
             ResetControls();
-            
+
         }
 
+        private void InitializeComboboxes()
+        {
+          
+        }
+        private void ResetControls()
+        {
+            txtRoomHeight.Clear();
+            txtRoomLength.Clear();
+            txtRoomWidth.Clear();
+            lblRoomVolume.Text = "";
+            lblRoomWatts.Content = "";
+            lstRadiators.Items.Clear();
+            lblTotalWatts.Content = "";
 
-        private void BtnCalculateVolumeAndWatts_Click(object sender, RoutedEventArgs e)
+            panTop.IsEnabled = true;
+            panLower.IsEnabled = false;
+        }
+
+        private void CalculateRoomVolume()
         {
             double lengthRoom = double.Parse(txtRoomLength.Text);
             double widthRoom = double.Parse(txtRoomWidth.Text);
@@ -57,6 +70,27 @@ namespace Prb.Radiators.Wpf
 
             lblRoomValue.Content = $"{volume: n2}".ToString();  //Alles afronden naar 0.00
             lblRoomWatts.Content = watts.ToString();
+
+        }
+
+        private void CalculateRoomWatts()
+        {
+            lblRoomWatts.Text= $"{roomVolume * 50} W";
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            panTop.IsEnabled = true;
+            panLower.IsEnabled = false;       //panBottom = CS0229 error
+            FillComboBoxes();
+            
+            
+        }
+
+
+        private void BtnCalculateVolumeAndWatts_Click(object sender, RoutedEventArgs e)
+        {
+            CalculateRoomVolume();
 
             panTop.IsEnabled = false;
             panLower.IsEnabled = true;
@@ -92,7 +126,7 @@ namespace Prb.Radiators.Wpf
             btnAddRadiatorHeight.Visibility = Visibility.Collapsed;
         }
 
-        private void btnAddRadiatorHeight_Click(object sender, RoutedEventArgs e)
+        private void BtnAddRadiatorHeight_Click(object sender, RoutedEventArgs e)
         {
             double height = double.Parse(cmbRadiatorHeight.SelectedValue.ToString());
             double width = double.Parse(cmbRadiatorWidth.SelectedValue.ToString());
@@ -118,19 +152,7 @@ namespace Prb.Radiators.Wpf
             ResetControls();
         }
 
-        private void ResetControls()
-        {
-            txtRoomHeight.Clear();
-            txtRoomLength.Clear();
-            txtRoomWidth.Clear();
-            lblRoomVolume.Content = "";
-            lblRoomWatts.Content = "";
-            lstRadiators.Items.Clear();
-            lblTotalWatts.Content = "";
-
-            panTop.IsEnabled = true;
-            panLower.IsEnabled = false;
-        }
+       
 
         private void FillComboBoxes()
         {
