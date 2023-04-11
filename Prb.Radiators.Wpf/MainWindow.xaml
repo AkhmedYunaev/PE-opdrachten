@@ -5,8 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prb.Radiators.Wpf"
         mc:Ignorable="d"
+        
         Title="Radiator calculator" Height="576" Width="800" >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="19*"/>
+        </Grid.RowDefinitions>
 
-     </Grid>
+        <GroupBox x:Name="panTop" HorizontalAlignment="Center" Height="168" Header="Info ruimte" Margin="0,22,0,0" VerticalAlignment="Top" Width="780" Background="Beige"/>
+        <Grid Height="NaN" Margin="0,0,0,66">
+            <Label Content="Lengte te verwarmen ruimte (cm) :&#xA;" HorizontalAlignment="Left" Height="42" Margin="44,40,0,0" VerticalAlignment="Top" Width="202"/>
+            <Label Content="Breedte te verwarmen ruimte (cm) :" HorizontalAlignment="Left" Height="42" Margin="44,77,0,0" VerticalAlignment="Top" Width="202"/>
+            <Label Content="Hoogte te verwarmen ruimte (cm) :" HorizontalAlignment="Left" Height="42" Margin="44,111,0,0" VerticalAlignment="Top" Width="202"/>
+            <TextBox x:Name="txtRoomLength" HorizontalAlignment="Left" Height="30" Margin="263,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
+            <TextBox x:Name="txtRoomWidth" HorizontalAlignment="Left" Height="30" Margin="263,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
+            <TextBox x:Name="txtRoomHeight" HorizontalAlignment="Left" Height="30" Margin="263,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
+            <Button x:Name="btnCalculateVolumeAndWatts" Content="Bereken volume en minimaal vermogen" HorizontalAlignment="Left" Margin="437,46,0,0" VerticalAlignment="Top" Width="244" Height="42"/>
+            <Label Content="Volume ruimte (m³) :" HorizontalAlignment="Left" Height="38" Margin="437,115,0,0" VerticalAlignment="Top" Width="150"/>
+            <Label Content="Minimaal vermogen te voorzien (W) :&#xA; " HorizontalAlignment="Left" Height="38" Margin="437,152,0,0" VerticalAlignment="Top" Width="258" RenderTransformOrigin="0.484,2.383"/>
+            <Label x:Name="lblRoomValue" Content="" HorizontalAlignment="Left" Height="24" Margin="651,65,0,0" VerticalAlignment="Center" Width="95" Background="AliceBlue"/>
+            <Label x:Name="lblRoomWatts" Content="" HorizontalAlignment="Left" Height="24" Margin="651,152,0,0" VerticalAlignment="Top" Width="95" Background="AliceBlue" />
+            <Label x:Name="lblCubicMetres" Content="m³" HorizontalAlignment="Left" Height="26" Margin="751,65,0,0" VerticalAlignment="Center" Width="39"/>
+            <Label x:Name="lblMeasurementWatts" Content="W" HorizontalAlignment="Left" Height="27" Margin="751,152,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.449,-1.602"/>
+        </Grid>
+        <GroupBox x:Name="panLower" HorizontalAlignment="Left" Height="300" Header="Benodigde vermogen" Margin="16,200,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="780" Background="AliceBlue">
+            <Grid Height="278" Margin="10,0,-22,0" Width="NaN">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="221*"/>
+                    <ColumnDefinition Width="37*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="26*"/>
+                    <RowDefinition Height="31*"/>
+                    <RowDefinition Height="223*"/>
+                </Grid.RowDefinitions>
+                <ListBox x:Name="lstRadiators" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="740" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="16,36,0,0" Grid.Row="2" Grid.ColumnSpan="2"/>
+                <Button x:Name="btnAddRadiatorHeight" Content="Voeg een radiator toe" HorizontalAlignment="Left" Height="27" Margin="624,5,0,0" VerticalAlignment="Top" Width="118" FontSize="11" Grid.Row="2" Grid.ColumnSpan="2" Click="btnAddRadiatorHeight_Click"/>
+                <Button x:Name ="btnCalculateRadiatorWatts" Content="Bereken vermogen" HorizontalAlignment="Left" Height="26" Margin="462,23,0,0" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" Grid.Row="1" RenderTransformOrigin="0.495,0.272" Click="btnCalculateRadiatorWatts_Click"/>
+                <Label  x:Name="lblRadiatorWatts"    Content="" HorizontalAlignment="Left" Height="22" Margin="585,15,0,0" VerticalAlignment="Top" Width="77" Background="Beige" Grid.RowSpan="2" />
+                <Label Content="W" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="28" RenderTransformOrigin="-0.007,0.011" Grid.RowSpan="2" Grid.Column="1"/>
+                <Label Content="Vermogen radiator :" HorizontalAlignment="Left" Height="29" Margin="462,0,0,0" VerticalAlignment="Center" Width="118" Grid.RowSpan="2"/>
+                <Label x:Name="lblTotalWatts" Content="" HorizontalAlignment="Left" Height="27" Margin="173,180,0,0" Grid.Row="2" VerticalAlignment="Top" Width="126" Background="Beige" />
+                <Label Content="Gezamelijk vermogen :" HorizontalAlignment="Left" Height="31" Margin="30,180,0,0" Grid.Row="2" VerticalAlignment="Top" Width="131"/>
+                <ComboBox x:Name="cmbRadiatorHeight" HorizontalAlignment="Left" Height="25" Margin="16,24,0,0" Grid.RowSpan="2" Grid.Row="1" VerticalAlignment="Top" Width="126" SelectionChanged="cmbRadiatorHeight_SelectionChanged"/>
+                <ComboBox x:Name="cmbRadiatorWidth" HorizontalAlignment="Left" Height="25" Margin="181,24,0,0" Grid.RowSpan="2" Grid.Row="1" VerticalAlignment="Top" Width="126"/>
+                <ComboBox x:Name="cmbRadiatorPanels" HorizontalAlignment="Left" Height="25" Margin="332,24,0,0" Grid.Row="1" VerticalAlignment="Top" Width="98" Grid.RowSpan="2"/>
+                <Label Content="Hoogte radiator (cm) :" HorizontalAlignment="Left" Height="27" Margin="16,20,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="142"/>
+                <Label Content="Breedte radiator (cm) :" HorizontalAlignment="Left" Height="27" Margin="181,0,0,0" Grid.RowSpan="2" VerticalAlignment="Center" Width="142"/>
+                <Label Content="Aantal panelen :" HorizontalAlignment="Left" Height="27" Margin="333,0,0,0" Grid.RowSpan="2" VerticalAlignment="Center" Width="97"/>
+
+
+
+            </Grid>
+
+        </GroupBox>
+        <Button x:Name="btnReset" Content="Reset" HorizontalAlignment="Left" Height="23" Margin="16,249,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1" Click="btnReset_Click"/>
+
+
+
+    </Grid>
+
 </Window>
